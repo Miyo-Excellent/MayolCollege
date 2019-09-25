@@ -1,0 +1,16 @@
+@import "vars";
+
+@mixin showModal() {
+    @keyframes open {
+    }
+    from {
+        top: auto !important;
+        bottom: -100vh !important;
+    }
+    to {
+        top: 0 !important;
+        bottom: auto !important;
+    }
+
+    @content;
+}

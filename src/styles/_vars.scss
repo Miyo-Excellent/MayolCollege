@@ -1,0 +1,65 @@
+//  General
+$prefixes: ("-webkit-","-moz-", "-o-", "");
+
+//      Font
+$font-family: 'Roboto', sans-serif;
+
+$text-color-primary: #6d6d6d;
+$text-color-secondary: #868686;
+$text-color-tertiary: #a0a0a0;
+
+$title-size: 16px;
+$text-size: 14px;
+
+//-----------------------------------------------------------------------//
+
+//      Layout
+$separation: 20px;
+
+//-----------------------------------------------------------------------//
+
+//      Login
+//          Banner
+//          Form
+$login-form-bg: #00c9ec;
+$login-form-bg-mobile: rgba(0, 201, 236, 0.4);
+$login-form-wrapper-bg: rgba(240, 248, 255, 1);
+$login-form-wrapper-bg-mobile: linear-gradient(
+        to bottom,
+        rgba(240, 248, 255, 0.6) 45%,
+        rgba(240, 248, 255, 1)
+);
+$login-form-width: 325px;
+//              Logo
+$login-form-logo-size: 195px;
+//              Inputs
+//                  Input
+$login-form-input-height: 35px;
+$login-form-input-bg: #e2e2e2;
+$login-form-input-bg-mobile: rgba(226, 226, 226, 0.6);
+$login-form-input-bg-focus: #d8d8d8;
+$login-form-input-bg-focus-mobile: rgba(255, 255, 255, 0.7);
+$login-form-input-icon-color: #6d6d6d;
+$login-form-input-icon-size: 16px;
+//                  Submit
+$login-form-submit-bg: #074761;
+$login-form-submit-bg-active: #076e8c;
+$login-form-submit-color: white;
+$login-form-submit-text-size: 1.1rem;
+$login-form-submit-font-family: "Cooper Bold", "Raleway Regular", sans-serif;
+//                  Forget Password
+$login-form-forget-password-color:  #00c9ec;
+$login-form-forget-password-color-active: #00dcff;
+//                  Error
+$login-form-error-color: #ef5052;
+$login-form-error-color-active: #ff1445;
+//          Footer
+$login-footer-bg: #074761;
+//              Title
+$login-footer-title-color: white;
+$login-footer-title-size: 2.4rem;
+$login-footer-title-size-font-family: Cooper, Raleway;
+//              Description
+$login-footer-description-color: white;
+$login-footer-description-size: 1rem;
+$login-footer-description-font-family: Raleway;
