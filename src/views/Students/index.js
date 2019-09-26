@@ -1,14 +1,13 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Redirect} from 'react-router-dom';
-import ReactTable from 'react-table'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faTrash, faPen, faTimes} from "@fortawesome/free-solid-svg-icons";
 //  import _ from "lodash";
 //  import moment from "moment";
 
 //  Layout
-import {Layout} from "../../components";
+import {Header, Layout} from "../../components";
 
 //  API
 import {} from "../../api";
@@ -177,7 +176,7 @@ class Students extends Component {
       this.onChangeTableValue({
         key: 'data',
         value: table.data.concat({
-          id: Math.random() * 1000,
+          id: parseInt(Math.random() * 1000),
           name: addStudent.name,
           lastname: addStudent.lastname,
           average: addStudent.average,
@@ -197,7 +196,6 @@ class Students extends Component {
     }
   };
 
-
   trash = async (e, id) => {
     const {table} = this.state;
 
@@ -209,11 +207,11 @@ class Students extends Component {
     });
   };
 
-  edit = async e => {
+  edit = async (e, id) => {
     e.preventDefault();
   };
 
-  showReport = async e => {
+  showReport = async (e, id) => {
     e.preventDefault();
   };
 
@@ -226,31 +224,7 @@ class Students extends Component {
     return (
       <Layout {...this.props}>
         <section className={styles.home}>
-          <div className={styles.header}>
-            <div className={styles.logo}>
-              <img src={logo} alt="Logo" className={styles.img}/>
-            </div>
-
-            <div className={styles.user}>
-              <div className={styles.meta}>
-                <div className={styles.name}>
-                  <h3 className={styles.text}>
-                    {`${user.name} ${user.lastname}`}
-                  </h3>
-                </div>
-
-                <div className={styles.role}>
-                  <h3 className={styles.text}>
-                    {user.role}
-                  </h3>
-                </div>
-              </div>
-
-              <div className={styles.picture}>
-                <img src={user.photo} alt="User photo" className={styles.img}/>
-              </div>
-            </div>
-          </div>
+          <Header/>
 
           <div className={styles.content}>
             <div className={styles.background}/>
@@ -267,11 +241,47 @@ class Students extends Component {
             </div>
 
             <div className={styles.students}>
-              <ReactTable
-                showPagination
-                data={table.data}
-                columns={table.columns}
-              />
+              <table className={`${styles.table}`}>
+                <thead className={styles.header}>
+                <tr className={styles.row}>{table.columns.map((col, key) => (
+                  <th className={styles.text} key={`user-table-col:${key}`}>
+                    {col.Header}
+                  </th>
+                ))}</tr>
+                </thead>
+
+                <tbody className={styles.body}>
+                {table.data.map((el, key) => (
+                  <tr className={styles.row} key={`user-table-row:${key}`}>
+                    <td className={`${styles.cell} ${styles['full-name']}`}>
+                      {`${el.name} ${el.lastname}`}
+                    </td>
+
+                    <td className={`${styles.cell} ${styles.id}`}>
+                      {el.id}
+                    </td>
+
+                    <td className={`${styles.cell} ${styles.average}`}>
+                      {el.average}
+                    </td>
+
+                    <td className={`${styles.cell} ${styles.actions}`}>
+                      <button className={styles.btn} onClick={e => this.trash(e, el.id)}>
+                        <FontAwesomeIcon icon={faTrash} className={styles.icon}/>
+                      </button>
+
+                      <button className={styles.btn} onClick={e => this.edit(e, el.id)}>
+                        <FontAwesomeIcon icon={faPen} className={styles.icon}/>
+                      </button>
+
+                      <button className={styles.btn} onClick={e => this.showReport(e, el.id)}>
+                        Ver Reporte
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+                </tbody>
+              </table>
             </div>
           </div>
 
@@ -292,6 +302,7 @@ class Students extends Component {
                   <div className={styles.title}>
                     <h3 className={styles.text}>Nuevo Estudiante</h3>
                   </div>
+
                   <div className={styles.name}>
                     <label htmlFor="name" className={styles.label}>Nombre</label>
                     <input
@@ -329,7 +340,7 @@ class Students extends Component {
                       value={addStudent.average}
                       onChange={_event_ => this.onChangeAddStudentValue({
                         key: 'average',
-                        value: _event_.target.value
+                        value: _event_.target.value.toFixed(2)
                       })}
                     />
                   </div>
@@ -338,7 +349,8 @@ class Students extends Component {
                     <button
                       type="submit"
                       onClick={_event => this.onCreateStudent(_event)}
-                    >Crear
+                    >
+                      Crear
                     </button>
                   </div>
                 </form>

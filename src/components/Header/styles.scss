@@ -1,0 +1,116 @@
+@import "../../styles/vars";
+@import "../../styles/mixins";
+
+.header {
+    grid-column: 1;
+    grid-row: 1;
+    background: white;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: 1fr;
+
+    @include for-tablet-portrait() {
+        grid-template-rows: min-content min-content;
+        grid-template-columns: 1fr;
+
+        .logo {
+            grid-column: 1 !important;
+            grid-row: 1 !important;
+            margin: $separation 0;
+            padding: 0 !important;
+
+            .img {
+                width: 185px !important;
+            }
+        }
+
+        .user {
+            grid-column: 1 !important;
+            grid-row: 2 !important;
+            padding: ($separation / 2) !important;
+
+            .meta {
+                flex: 1;
+
+                .name, .role {
+                    width: auto;
+
+                    .text {
+                        padding: 0 !important;
+                        width: auto;
+                        text-align: end;
+                    }
+                }
+            }
+
+            .picture {
+                align-items: flex-start !important;
+                padding: 0 0 0 $separation;
+            }
+        }
+    }
+
+    .logo {
+        grid-column: 1;
+        grid-row: 1;
+        padding: 0 $separation;
+        @include flex();
+
+        .img {
+            width: 215px;
+        }
+    }
+
+    .user {
+        padding: 0 $separation;
+        grid-column: 2;
+        grid-row: 1;
+        @include flex($flex-direction: row, $flex-wrap: nowrap, $justify-content: flex-end);
+
+        .meta {
+            @include flex($flex-wrap: nowrap, $justify-content: flex-start, $align-items: flex-start);
+
+            .name, .role {
+                flex: 1;
+                width: 100%;
+
+                .text {
+                    width: 100%;
+                    padding: 0 $separation;
+                    font-size: 22px;
+                }
+            }
+
+            .name {
+                margin: 0 0 5px 0;
+
+                .text {
+                    color: #074761;
+                }
+            }
+
+            .role {
+                align-self: flex-end;
+
+                .text {
+                    color: #00c9ec;
+                }
+            }
+        }
+
+        .picture {
+            position: relative;
+            width: auto;
+            height: 100%;
+            overflow: hidden;
+            @include flex();
+
+            .img {
+                border: solid 5px #074761;
+                width: 60px;
+                height: 60px;
+                border-radius: 30px;
+            }
+        }
+    }
+}

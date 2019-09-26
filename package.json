@@ -5,9 +5,9 @@
   "license": "MIT",
   "scripts": {
     "build-client": "NODE_ENV=production BABEL_ENV=production webpack --progress",
-    "start": "node src/server.js",
+    "start": "node server/server.js",
     "start-client": "NODE_ENV=development BABEL_ENV=development webpack-dev-server",
-    "start-watch": "nodemon --exec babel-node src/server.js"
+    "start-watch": "nodemon --exec babel-node server/server.js"
   },
   "devDependencies": {
     "@babel/core": "^7.6.0",
@@ -59,7 +59,6 @@
     "react-redux": "^7.1.1",
     "react-router": "^5.0.1",
     "react-router-dom": "^5.0.1",
-    "react-table": "^6.10.3",
     "redux": "^4.0.4",
     "redux-thunk": "^2.3.0"
   }
